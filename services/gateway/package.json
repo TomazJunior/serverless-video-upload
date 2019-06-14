@@ -9,8 +9,7 @@
     "serverless-offline": "^4.10.6"
   },
   "scripts": {
-    "start": "http-server -p 3000 ./frontend",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "deploy": "serverless deploy --verbose"
   },
   "author": "",
   "license": "ISC"

@@ -9,7 +9,7 @@
     "serverless-offline": "^4.10.6"
   },
   "scripts": {
-    "serverless:package": "serverless package --package packages/user-auth-pool"
+    "deploy": "serverless deploy --verbose"
   },
   "author": "",
   "license": "ISC"
