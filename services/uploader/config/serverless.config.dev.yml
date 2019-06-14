@@ -1,0 +1,7 @@
+environmentTag: "dev"
+authorizer: arn:aws:cognito-idp:us-east-1:266438417220:userpool/us-east-1_o2uvvdQOu
+restApiId: j2dk62o9sk
+restApiRootResourceId: hl7bj1zhrd
+fileUploaderS3BucketName: file-uploader-data-dev
+S3Endpoint: ""
+lambdaIamRole: arn:aws:iam::266438417220:role/uploader-service-dev-us-east-1-lambdaRole

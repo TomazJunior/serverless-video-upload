@@ -1,0 +1,72 @@
+service: uploader-service
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  region: us-east-1
+  stage: ${self:custom.currentStage}
+  logRetentionInDays: 30
+  timeout: 30
+  environment:
+    fileUploaderS3BucketName: ${file(./config/serverless.config.${self:custom.currentStage}.yml):fileUploaderS3BucketName}
+    S3Endpoint: ${file(./config/serverless.config.${self:custom.currentStage}.yml):S3Endpoint}
+    environmentTag: ${file(./config/serverless.config.${self:custom.currentStage}.yml):environmentTag}
+  apiGateway:
+    restApiId: ${file(./config/serverless.config.${self:custom.currentStage}.yml):restApiId}
+    restApiRootResourceId: ${file(./config/serverless.config.${self:custom.currentStage}.yml):restApiRootResourceId}
+    binaryMediaTypes:
+      - '*/*'
+custom:
+  defaultStage: dev
+  currentStage: ${opt:stage, self:custom.defaultStage}
+  fileUploaderS3BucketName: ${file(./config/serverless.config.${self:custom.currentStage}.yml):fileUploaderS3BucketName}
+  apigwBinary:
+    types:
+      - 'multipart/form-data'
+    apiGatewayName: apigateway-${self:custom.currentStage}
+  s3:
+    port: 8401
+    directory: ./tmp-s3
+  serverless-offline:
+    port: 5002
+
+functions:
+  UPLOADER_SERVICE:
+    name: 'UPLOADER_SERVICE_${opt:stage, self:custom.defaultStage}'
+    description: Uploader Service
+    handler: src/index.handler
+    events:
+      - http:
+          path: /upload
+          method: post
+          authorizer:
+            type: COGNITO_USER_POOLS
+            arn: ${file(./config/serverless.config.${self:custom.currentStage}.yml):authorizer}
+              
+resources:
+  Resources:
+    FileUploaderS3Bucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:custom.fileUploaderS3BucketName}
+    FileUploaderS3BucketPolicy:
+      Type: AWS::S3::BucketPolicy
+      Properties:
+        Bucket:
+          Ref: FileUploaderS3Bucket
+        PolicyDocument:
+          Statement:
+            - Sid: LambdaCrudObject
+              Effect: Allow
+              Principal: 
+                AWS: ${file(./config/serverless.config.${self:custom.currentStage}.yml):lambdaIamRole}
+              Action:
+                - s3:GetObject
+                - s3:DeleteObject
+                - s3:PutObject
+              Resource:
+                Fn::Join: [ "", ["arn:aws:s3:::", { "Ref": "FileUploaderS3Bucket" }, "/*"] ]
+plugins:
+ - serverless-apigw-binary        
+ - serverless-offline
+ - serverless-s3-local

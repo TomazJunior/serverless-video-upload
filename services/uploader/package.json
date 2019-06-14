@@ -1,0 +1,24 @@
+{
+  "name": "uploader-service",
+  "version": "1.0.0",
+  "description": "This service is in charge of managing user authentication and authorization",
+  "main": "index.js",
+  "dependencies": {
+    "aws-sdk": "^2.475.0",
+    "busboy": "^0.3.1",
+    "lodash": "^4.17.11",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "serverless": "1.31.0",
+    "serverless-apigw-binary": "git+https://github.com/TomazJunior/serverless-apigw-binary.git",
+    "serverless-offline": "^3.31.3",
+    "serverless-s3-local": "^0.3.20"
+  },
+  "scripts": {
+    "start": "serverless offline start -r us-east-1 --stage local",
+    "deploy": "serverless deploy --verbose"
+  },
+  "author": "",
+  "license": "ISC"
+}
