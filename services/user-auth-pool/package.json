@@ -1,0 +1,16 @@
+{
+  "name": "user-auth-pool",
+  "version": "1.0.0",
+  "description": "This service is in charge of managing user authentication and authorization",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "serverless": "^1.45.1",
+    "serverless-offline": "^4.10.6"
+  },
+  "scripts": {
+    "serverless:package": "serverless package --package packages/user-auth-pool"
+  },
+  "author": "",
+  "license": "ISC"
+}
