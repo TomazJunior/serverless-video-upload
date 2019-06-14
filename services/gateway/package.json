@@ -1,0 +1,17 @@
+{
+  "name": "apigateway-service",
+  "version": "1.0.0",
+  "description": "This service is in charge of managing user authentication and authorization",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "serverless": "^1.45.1",
+    "serverless-offline": "^4.10.6"
+  },
+  "scripts": {
+    "start": "http-server -p 3000 ./frontend",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
