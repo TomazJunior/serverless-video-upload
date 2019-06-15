@@ -5,6 +5,7 @@ const uuid = require('uuid');
 const UploaderService = require('./uploader.service');
 
 module.exports.handler = async (event, context, callback) => {
+  console.log('uploader.handler', 'process started');
   const bucket = process.env.fileUploaderS3BucketName;
   await parseForm(event);
   
@@ -17,10 +18,15 @@ module.exports.handler = async (event, context, callback) => {
   const data = await uploaderService.upload(fileName, body.mimeType, body.file);
   const response = {
     statusCode: 200,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Credentials': true,
+    },
     body: JSON.stringify({
       ...data
     }),
   };
 
+  console.log('uploader.handler', 'process completed');
   callback(null, response);
 };

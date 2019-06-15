@@ -6,6 +6,10 @@ module.exports.handler = async (event, context, callback) => {
   const dynamoDBService = new DynamoDBService();
   const data = await dynamoDBService.scan(process.env.videosTableName);
   const response = {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Credentials': true,
+    },
     statusCode: 200,
     body: JSON.stringify(data),
   };

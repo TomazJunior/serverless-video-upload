@@ -44,9 +44,12 @@ functions:
             origin: '*'
             headers:
               - Content-Type
+              - X-Amz-Date
               - Authorization
-              - Content-Length
-              - X-Requested-With          
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+              - authorization
           authorizer:
             type: COGNITO_USER_POOLS
             arn: ${file(./config/serverless.config.${self:custom.currentStage}.yml):authorizer}

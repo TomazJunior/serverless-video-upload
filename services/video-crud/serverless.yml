@@ -47,13 +47,7 @@ functions:
       - http:
           path: /video
           method: get
-          cors:
-            origin: '*'
-            headers:
-              - Content-Type
-              - Authorization
-              - Content-Length
-              - X-Requested-With          
+          cors: true   
           # authorizer: ${file(./config/serverless.config.${self:custom.currentStage}.yml):authorizer}
 resources:
   Resources:
