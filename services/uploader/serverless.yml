@@ -58,10 +58,16 @@ resources:
               Function: ${file(./config/serverless.config.${self:custom.currentStage}.yml):transcoderLambdaFuntionArn}
 
     FileTranscodedS3Bucket:
+      DependsOn:
+        - PushVideoDynamoDB    
       Type: AWS::S3::Bucket
       Properties:
         BucketName: ${self:custom.fileTranscodedS3BucketName}
-        
+        NotificationConfiguration:
+          LambdaConfigurations:
+            - Event: "s3:ObjectCreated:*"
+              Function: ${file(./config/serverless.config.${self:custom.currentStage}.yml):pushVideoToDBLambdaFuntionArn}
+
     TranscodeVideoPermissionFileUploaderS3Bucket:
       Type: AWS::Lambda::Permission
       Properties:
@@ -69,6 +75,14 @@ resources:
         Action: "lambda:InvokeFunction"
         Principal: "s3.amazonaws.com"
         SourceArn: "arn:aws:s3:::${self:custom.fileUploaderS3BucketName}"
+
+    PushVideoDynamoDB:
+      Type: AWS::Lambda::Permission
+      Properties:
+        FunctionName: ${file(./config/serverless.config.${self:custom.currentStage}.yml):pushVideoToDBLambdaFuntionArn}
+        Action: "lambda:InvokeFunction"
+        Principal: "s3.amazonaws.com"
+        SourceArn: "arn:aws:s3:::${self:custom.fileTranscodedS3BucketName}"
 
     FileUploaderS3BucketPolicy:
       Type: AWS::S3::BucketPolicy

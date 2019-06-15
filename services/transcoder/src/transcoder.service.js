@@ -3,7 +3,7 @@ const AWS = require('aws-sdk');
 const path = require('path');
 
 class TranscoderService {
-   constructor() {
+  constructor() {
     this.elasticTranscoder = new AWS.ElasticTranscoder({
       region: process.env.region
     });

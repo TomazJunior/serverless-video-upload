@@ -7,3 +7,4 @@ fileTranscodedS3BucketName: file-transcoded-data-local
 S3Endpoint: http://localhost:8401
 lambdaIamRole: ""
 transcoderLambdaFuntionArn: ""
+pushVideoToDBLambdaFuntionArn: ""
