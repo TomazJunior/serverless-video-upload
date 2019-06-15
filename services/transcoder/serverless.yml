@@ -1,0 +1,42 @@
+service: transcoder-service
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  region: us-east-1
+  iamRoleStatements:
+  - Effect: Allow
+    Action:
+      - s3:GetObject
+      - s3:PutObject
+    Resource: arn:aws:s3:::*
+  - Effect: Allow
+    Action:
+      - elastictranscoder:Read*
+      - elastictranscoder:List*
+      - elastictranscoder:*Job
+      - elastictranscoder:*Preset
+      - s3:List*
+      - iam:List*
+      - sns:List*  
+    Resource: "*"      
+  stage: ${self:custom.currentStage}
+  logRetentionInDays: 30
+  timeout: 30
+  environment:
+    region: ${file(./config/serverless.config.${self:custom.currentStage}.yml):region}
+    transcoderPipelineId: ${file(./config/serverless.config.${self:custom.currentStage}.yml):transcoderPipelineId}
+custom:
+  defaultStage: dev
+  currentStage: ${opt:stage, self:custom.defaultStage}
+  serverless-offline:
+    port: 5003
+
+functions:
+  TRANSCODER_SERVICE:
+    name: 'TRANSCODER_SERVICE_${self:custom.currentStage}'
+    description: Transcoder Service
+    handler: src/index.handler
+
+plugins:
+ - serverless-offline
