@@ -3,5 +3,7 @@ authorizer: arn:aws:cognito-idp:us-east-1:266438417220:userpool/us-east-1_o2uvvd
 restApiId: j2dk62o9sk
 restApiRootResourceId: hl7bj1zhrd
 fileUploaderS3BucketName: file-uploader-data-dev
+fileTranscodedS3BucketName: file-transcoded-data-dev
 S3Endpoint: ""
 lambdaIamRole: arn:aws:iam::266438417220:role/uploader-service-dev-us-east-1-lambdaRole
+transcoderLambdaFuntionArn: arn:aws:lambda:us-east-1:266438417220:function:TRANSCODER_SERVICE_dev

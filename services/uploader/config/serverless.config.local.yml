@@ -3,5 +3,7 @@ authorizer: ""
 restApiId: ""
 restApiRootResourceId: ""
 fileUploaderS3BucketName: file-uploader-data-local
+fileTranscodedS3BucketName: file-transcoded-data-local
 S3Endpoint: http://localhost:8401
 lambdaIamRole: ""
+transcoderLambdaFuntionArn: ""

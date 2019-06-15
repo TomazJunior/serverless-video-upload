@@ -1,7 +1,7 @@
 {
   "name": "uploader-service",
   "version": "1.0.0",
-  "description": "This service is in charge of managing user authentication and authorization",
+  "description": "This service is in charge of upload videos to S3",
   "main": "index.js",
   "dependencies": {
     "aws-sdk": "^2.475.0",
@@ -10,7 +10,7 @@
     "uuid": "^3.3.2"
   },
   "devDependencies": {
-    "serverless": "1.31.0",
+    "serverless": "^1.45.1",
     "serverless-apigw-binary": "git+https://github.com/TomazJunior/serverless-apigw-binary.git",
     "serverless-offline": "^3.31.3",
     "serverless-s3-local": "^0.3.20"

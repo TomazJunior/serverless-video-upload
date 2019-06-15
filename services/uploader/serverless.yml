@@ -9,17 +9,18 @@ provider:
   timeout: 30
   environment:
     fileUploaderS3BucketName: ${file(./config/serverless.config.${self:custom.currentStage}.yml):fileUploaderS3BucketName}
+    fileTranscodedS3BucketName: ${file(./config/serverless.config.${self:custom.currentStage}.yml):fileTranscodedS3BucketName}
     S3Endpoint: ${file(./config/serverless.config.${self:custom.currentStage}.yml):S3Endpoint}
     environmentTag: ${file(./config/serverless.config.${self:custom.currentStage}.yml):environmentTag}
   apiGateway:
     restApiId: ${file(./config/serverless.config.${self:custom.currentStage}.yml):restApiId}
     restApiRootResourceId: ${file(./config/serverless.config.${self:custom.currentStage}.yml):restApiRootResourceId}
-    binaryMediaTypes:
-      - '*/*'
+
 custom:
   defaultStage: dev
   currentStage: ${opt:stage, self:custom.defaultStage}
   fileUploaderS3BucketName: ${file(./config/serverless.config.${self:custom.currentStage}.yml):fileUploaderS3BucketName}
+  fileTranscodedS3BucketName: ${file(./config/serverless.config.${self:custom.currentStage}.yml):fileTranscodedS3BucketName}
   apigwBinary:
     types:
       - 'multipart/form-data'
@@ -46,9 +47,29 @@ functions:
 resources:
   Resources:
     FileUploaderS3Bucket:
+      DependsOn:
+        - TranscodeVideoPermissionFileUploaderS3Bucket
       Type: AWS::S3::Bucket
       Properties:
         BucketName: ${self:custom.fileUploaderS3BucketName}
+        NotificationConfiguration:
+          LambdaConfigurations:
+            - Event: "s3:ObjectCreated:*"
+              Function: ${file(./config/serverless.config.${self:custom.currentStage}.yml):transcoderLambdaFuntionArn}
+
+    FileTranscodedS3Bucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:custom.fileTranscodedS3BucketName}
+        
+    TranscodeVideoPermissionFileUploaderS3Bucket:
+      Type: AWS::Lambda::Permission
+      Properties:
+        FunctionName: ${file(./config/serverless.config.${self:custom.currentStage}.yml):transcoderLambdaFuntionArn}
+        Action: "lambda:InvokeFunction"
+        Principal: "s3.amazonaws.com"
+        SourceArn: "arn:aws:s3:::${self:custom.fileUploaderS3BucketName}"
+
     FileUploaderS3BucketPolicy:
       Type: AWS::S3::BucketPolicy
       Properties:
