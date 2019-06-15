@@ -4,6 +4,7 @@
   "description": "This service is in charge of upload videos to S3",
   "main": "index.js",
   "dependencies": {
+    "atob": "^2.1.2",
     "aws-sdk": "^2.475.0",
     "busboy": "^0.3.1",
     "lodash": "^4.17.11",

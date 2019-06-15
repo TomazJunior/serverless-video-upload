@@ -25,7 +25,7 @@ class DynamoDBService {
       };
       this.dynamoDB.putItem(params, (err, data) => {
         if (err) { 
-          console.log(loggerTag, 'tableName:', 'Failed writing item ' + err);
+          console.error(loggerTag, 'tableName:', 'Failed writing item ' + err);
           reject(err);
         } else {
           resolve(data);
@@ -45,17 +45,20 @@ class DynamoDBService {
       };
       var docClient = new AWS.DynamoDB.DocumentClient();
 
-      this.dynamoDB.scan(params, (err, data) => {
-        if (err) { 
-          console.log(loggerTag, 'tableName:', 'Failed writing item ' + err);
-          reject(err);
-        } else {
-          resolve(data.Items.map((item) => {
-            return this.converter.unmarshall(item);
-          }));
-          console.log(loggerTag, 'process completed');
-        }
-      });
+      let scanResults = [];
+      let data;
+      try {
+        do {
+          data = await docClient.scan(params).promise();
+          data.Items.forEach((item) => scanResults.push(this.converter.unmarshall(item)));
+          params.ExclusiveStartKey = data.LastEvaluatedKey;
+        } while(typeof data.LastEvaluatedKey != "undefined");
+      } catch (error) {
+        console.error(loggerTag, err);
+        reject(err);
+      }
+      resolve(scanResults);
+      console.log(loggerTag, 'process completed');
     });
   }
 }

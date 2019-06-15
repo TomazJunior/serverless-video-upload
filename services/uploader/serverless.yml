@@ -4,6 +4,12 @@ provider:
   name: aws
   runtime: nodejs8.10
   region: us-east-1
+  iamRoleStatements:
+  - Effect: Allow
+    Action:
+      - s3:GetObject
+      - s3:PutObject
+    Resource: arn:aws:s3:::*  
   stage: ${self:custom.currentStage}
   logRetentionInDays: 30
   timeout: 30
@@ -53,7 +59,27 @@ functions:
           authorizer:
             type: COGNITO_USER_POOLS
             arn: ${file(./config/serverless.config.${self:custom.currentStage}.yml):authorizer}
-              
+  SIGNED_URL_SERVICE:
+    name: 'SIGNED_URL_SERVICE_${opt:stage, self:custom.defaultStage}'
+    description: Signed Url Service
+    handler: src/retrieveSignedUrl.handler
+    events:
+      - http:
+          path: /signed-url
+          method: post
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+              - authorization
+          authorizer:
+            type: COGNITO_USER_POOLS
+            arn: ${file(./config/serverless.config.${self:custom.currentStage}.yml):authorizer}              
 resources:
   Resources:
     FileUploaderS3Bucket:
