@@ -1,0 +1,9 @@
+environmentTag: dev
+region: us-east-1
+dynamoDBEndpoint: https://dynamodb.us-east-1.amazonaws.com/
+videosTableName: videos-dev
+dynamoDBaccessKey: ""
+dynamoDBaccessSecret: ""
+authorizer: arn:aws:cognito-idp:us-east-1:266438417220:userpool/us-east-1_o2uvvdQOu
+restApiId: j2dk62o9sk
+restApiRootResourceId: hl7bj1zhrd

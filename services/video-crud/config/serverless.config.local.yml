@@ -4,3 +4,6 @@ dynamoDBEndpoint: http://localhost:8383
 videosTableName: videos-local
 dynamoDBaccessKey: "access"
 dynamoDBaccessSecret: "secret"
+authorizer: ""
+restApiId: ""
+restApiRootResourceId: ""

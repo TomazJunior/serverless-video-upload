@@ -40,6 +40,13 @@ functions:
       - http:
           path: /upload
           method: post
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - Authorization
+              - Content-Length
+              - X-Requested-With          
           authorizer:
             type: COGNITO_USER_POOLS
             arn: ${file(./config/serverless.config.${self:custom.currentStage}.yml):authorizer}

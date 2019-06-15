@@ -1,5 +1,9 @@
 # serverless-video-upload
 
+1) Deploy user-auth-pool project
+1) Setup icognito user pool
+2) Setup Elastic Transcoder pipeline
+
 ## Local DynamoDB
 Download the local DynamoDB version: [here](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.DownloadingAndRunning.html)
 

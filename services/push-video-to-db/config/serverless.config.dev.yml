@@ -1,6 +1,0 @@
-environmentTag: dev
-region: us-east-1
-dynamoDBEndpoint: https://dynamodb.us-east-1.amazonaws.com/
-videosTableName: videos-dev
-dynamoDBaccessKey: ""
-dynamoDBaccessSecret: ""

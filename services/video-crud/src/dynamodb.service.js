@@ -34,6 +34,30 @@ class DynamoDBService {
       });
     });
   }
+
+  async scan(tableName) {
+    const loggerTag = 'DynamoDBService.scan';
+    console.log(loggerTag, 'process started');
+    console.log(loggerTag, 'tableName:', tableName);
+    return new Promise((resolve, reject) => {
+      const params = {
+        TableName: tableName
+      };
+      var docClient = new AWS.DynamoDB.DocumentClient();
+
+      this.dynamoDB.scan(params, (err, data) => {
+        if (err) { 
+          console.log(loggerTag, 'tableName:', 'Failed writing item ' + err);
+          reject(err);
+        } else {
+          resolve(data.Items.map((item) => {
+            return this.converter.unmarshall(item);
+          }));
+          console.log(loggerTag, 'process completed');
+        }
+      });
+    });
+  }
 }
 
 module.exports = DynamoDBService;
