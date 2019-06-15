@@ -1,0 +1,6 @@
+environmentTag: local
+region: us-east-1
+dynamoDBEndpoint: http://localhost:8383
+videosTableName: videos-local
+dynamoDBaccessKey: "access"
+dynamoDBaccessSecret: "secret"

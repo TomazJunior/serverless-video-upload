@@ -1,0 +1,19 @@
+{
+  "name": "push-video-to-db-service",
+  "version": "1.0.0",
+  "description": "This service is in charge of pushing the video url to dynamo db videos table",
+  "main": "index.js",
+  "dependencies": {
+    "aws-sdk": "^2.475.0"
+  },
+  "devDependencies": {
+    "serverless": "1.31.0",
+    "serverless-offline": "^3.31.3"
+  },
+  "scripts": {
+    "start": "serverless offline start -r us-east-1 --stage local",
+    "deploy": "serverless deploy --verbose"
+  },
+  "author": "",
+  "license": "ISC"
+}

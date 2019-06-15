@@ -1,0 +1,55 @@
+service: push-video-to-db-service
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  region: us-east-1
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "*"    
+  stage: ${self:custom.currentStage}
+  logRetentionInDays: 30
+  timeout: 30
+  environment:
+    region: ${file(./config/serverless.config.${self:custom.currentStage}.yml):region}
+    videosTableName: ${file(./config/serverless.config.${self:custom.currentStage}.yml):videosTableName}
+    dynamoDBEndpoint: ${file(./config/serverless.config.${self:custom.currentStage}.yml):dynamoDBEndpoint}
+    dynamoDBaccessKey: ${file(./config/serverless.config.${self:custom.currentStage}.yml):dynamoDBaccessKey}
+    dynamoDBaccessSecret: ${file(./config/serverless.config.${self:custom.currentStage}.yml):dynamoDBaccessSecret}
+custom:
+  defaultStage: dev
+  currentStage: ${opt:stage, self:custom.defaultStage}
+  serverless-offline:
+    port: 5004
+
+functions:
+  PUSH_VIDEO_TO_DB_SERVICE:
+    name: 'PUSH_VIDEO_TO_DB_SERVICE_${self:custom.currentStage}'
+    description: Push video url to db Service
+    handler: src/index.handler
+
+resources:
+  Resources:
+    VideosTable:
+      Type: "AWS::DynamoDB::Table"
+      Properties:
+        TableName: ${file(./config/serverless.config.${self:custom.currentStage}.yml):videosTableName}
+        AttributeDefinitions:
+          -
+            AttributeName: "key"
+            AttributeType: "S"
+        KeySchema:
+          -
+            AttributeName: "key"
+            KeyType: "HASH"
+        BillingMode: PAY_PER_REQUEST
+
+plugins:
+ - serverless-offline
