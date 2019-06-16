@@ -1,5 +1,11 @@
 # serverless-video-upload
 
+### Live Demo
+Hosted on the github pages
+
+<a href="http://TomazJunior.github.io/serverless-video-upload/" target="_blank">Live demo</a>
+
+## How to deploy
 1) Deploy user-auth-pool project
 1) Setup icognito user pool
 2) Setup Elastic Transcoder pipeline
