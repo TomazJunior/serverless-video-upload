@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/serverless-video-upload/static/css/main.f493a3c7.chunk.css",
+    "main.js": "/serverless-video-upload/static/js/main.2716a184.chunk.js",
+    "main.js.map": "/serverless-video-upload/static/js/main.2716a184.chunk.js.map",
+    "runtime~main.js": "/serverless-video-upload/static/js/runtime~main.28e88800.js",
+    "runtime~main.js.map": "/serverless-video-upload/static/js/runtime~main.28e88800.js.map",
+    "static/js/2.101384ad.chunk.js": "/serverless-video-upload/static/js/2.101384ad.chunk.js",
+    "static/js/2.101384ad.chunk.js.map": "/serverless-video-upload/static/js/2.101384ad.chunk.js.map",
+    "index.html": "/serverless-video-upload/index.html",
+    "precache-manifest.79f7a36b3024237a2d52921d95798b78.js": "/serverless-video-upload/precache-manifest.79f7a36b3024237a2d52921d95798b78.js",
+    "service-worker.js": "/serverless-video-upload/service-worker.js",
+    "static/css/main.f493a3c7.chunk.css.map": "/serverless-video-upload/static/css/main.f493a3c7.chunk.css.map"
+  }
+}
