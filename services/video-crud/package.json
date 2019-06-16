@@ -1,7 +1,7 @@
 {
   "name": "push-video-to-db-service",
   "version": "1.0.0",
-  "description": "This service is in charge of pushing the video url to dynamo db videos table",
+  "description": "This service is in charge of pushing the video information to dynamodb videos table",
   "main": "index.js",
   "dependencies": {
     "aws-sdk": "^2.475.0"

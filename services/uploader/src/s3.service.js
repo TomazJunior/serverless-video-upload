@@ -28,9 +28,7 @@ class S3Service {
       Key: key,
       Expires: 3600 // expiration time in seconds (1h)
     };
-    console.log('params', params);
     var url = this.s3.getSignedUrl('getObject', params);
-    console.log('The URL is', url);
     return url;
   }
 }

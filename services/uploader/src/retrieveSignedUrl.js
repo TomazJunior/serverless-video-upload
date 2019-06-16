@@ -5,9 +5,7 @@ const atob = require('atob');
 
 module.exports.handler = async (event, context, callback) => {
   console.log('retrieveSignedUrl.handler', 'process started');
-  console.log('event:', event);
   const body = event.isBase64Encoded ? JSON.parse(atob(event.body)) : JSON.parse(event.body);
-  console.log('body', body);
   const {key, bucket} = body;
   
   const s3Service = new S3Service();

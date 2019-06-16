@@ -9,9 +9,6 @@ module.exports.handler = async (event, context, callback) => {
   var bucket = event.Records[0].s3.bucket.name;
   
   const displayName = path.basename(key);
-
-  console.log('push-video-to-db.handler', {...event.Records[0].s3.object});
-
   const dynamoDBService = new DynamoDBService();
   const data = await dynamoDBService.write(process.env.videosTableName, {
     displayName,

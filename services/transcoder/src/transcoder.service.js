@@ -21,6 +21,7 @@ class TranscoderService {
     
     const metadata = await this.getObjectMetadata(bucket, key);
     let fileName = '';
+    // store the original file name in the metadata to be added in the the dynamodb table
     if (metadata['original']) {
       fileName = path.parse(metadata['original']).name + ext;
     } else {
@@ -38,6 +39,7 @@ class TranscoderService {
       Outputs: [
         {
           Key: fileName,
+          // list of presets: https://docs.aws.amazon.com/elastictranscoder/latest/developerguide/system-presets.html
           PresetId: '1351620000001-000020' //480p 16:9 format
         }
       ]

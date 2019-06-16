@@ -3,6 +3,9 @@ const Busboy = require('busboy');
 const { get, set } = require('lodash');
 const { Writable } = require('stream');
 
+/**
+ * Parse the multipart body and send a buffer back in the event.body.file
+ */
 module.exports.parseForm = (event) => new Promise((resolve, reject) => {
   if (!event || !event.body) { return resolve(event); }
   

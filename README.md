@@ -1,21 +1,37 @@
 # serverless-video-upload
 
-### Live Demo
+video upload and playback React website with Icoginito authorization using a Serverless architecture
+
+## AWS Serverless Architeture
+- Cognito AWS Service
+- API Gateway
+- DynamoDB
+- S3
+- Elastic Transcoder
+
+
+## Live Demo
 Hosted on the github pages
 
 <a href="http://TomazJunior.github.io/serverless-video-upload/" target="_blank">Live demo</a>
 
-## How to deploy
+## How to deploy and setup the project
 1) Deploy user-auth-pool project
-1) Setup icognito user pool
-2) Setup Elastic Transcoder pipeline
+2) Setup icognito user pool in the AWS Console
+3) Create a new Elastic Transcoder pipeline
+4) Deploy the uploader service
+5) Deploy the video-crud service
 
-## Local DynamoDB
+----------
+
+## How to setup services locally
+
+### Local DynamoDB
 Download the local DynamoDB version: [here](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.DownloadingAndRunning.html)
 
 Run the DynamoDB server using the port 8383: cd <path of local DynamoDB > java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb -port 8383
 
-## GUI for DynamoDB Local
+### GUI for DynamoDB Local
 - `npm install dynamodb-admin -g`
 - `export DYNAMO_ENDPOINT=http://localhost:8383`
 - `dynamodb-admin`

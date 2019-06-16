@@ -1,7 +1,7 @@
 {
   "name": "user-auth-pool",
   "version": "1.0.0",
-  "description": "This service is in charge of managing user authentication and authorization",
+  "description": "This service is in charge of creating a coginito pool to control the user authentication and authorization",
   "main": "index.js",
   "dependencies": {},
   "devDependencies": {
