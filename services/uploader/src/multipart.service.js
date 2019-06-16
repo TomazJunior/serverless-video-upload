@@ -7,6 +7,7 @@ const { Writable } = require('stream');
  * Parse the multipart body and send a buffer back in the event.body.file
  */
 module.exports.parseForm = (event) => new Promise((resolve, reject) => {
+  console.log('multipart.service.parseForm', 'process started');
   if (!event || !event.body) { return resolve(event); }
   
   const contentType = getContentType(event);
@@ -34,6 +35,7 @@ module.exports.parseForm = (event) => new Promise((resolve, reject) => {
     file.on('end', () => {
       result.fileName = filename;
       result.mimeType = mimetype;
+      console.log('multipart.service.parseForm', 'process completed');
     });
   });
 
@@ -42,6 +44,7 @@ module.exports.parseForm = (event) => new Promise((resolve, reject) => {
   });
 
   busboy.on('error', (error) => {
+    console.error('multipart.service.parseForm', 'process failed', error);
     reject(new Error(`Parse error: ${error.message}`));
   });
 

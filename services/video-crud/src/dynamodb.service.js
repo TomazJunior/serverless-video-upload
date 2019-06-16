@@ -9,7 +9,6 @@ class DynamoDBService {
       accessKeyId: process.env.dynamoDBaccessKey,
       secretAccessKey: process.env.dynamoDBaccessSecret
     };
-    console.log('DynamoDBService.ctor', driver);
     this.dynamoDB = new AWS.DynamoDB(driver);
     this.converter = AWS.DynamoDB.Converter;
   }

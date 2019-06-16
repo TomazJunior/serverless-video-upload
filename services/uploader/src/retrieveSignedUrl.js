@@ -1,11 +1,9 @@
 'use strict';
-const path = require('path');
 const S3Service = require('./s3.service');
-const atob = require('atob');
 
 module.exports.handler = async (event, context, callback) => {
   console.log('retrieveSignedUrl.handler', 'process started');
-  const body = event.isBase64Encoded ? JSON.parse(atob(event.body)) : JSON.parse(event.body);
+  const body = typeof event.body === 'string' ? JSON.parse(event.body) : event.body;
   const {key, bucket} = body;
   
   const s3Service = new S3Service();
