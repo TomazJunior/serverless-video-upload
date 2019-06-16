@@ -39,26 +39,21 @@ class DynamoDBService {
     const loggerTag = 'DynamoDBService.scan';
     console.log(loggerTag, 'process started');
     console.log(loggerTag, 'tableName:', tableName);
-    return new Promise((resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
       const params = {
         TableName: tableName
       };
-      var docClient = new AWS.DynamoDB.DocumentClient();
-
-      let scanResults = [];
-      let data;
-      try {
-        do {
-          data = await docClient.scan(params).promise();
-          data.Items.forEach((item) => scanResults.push(this.converter.unmarshall(item)));
-          params.ExclusiveStartKey = data.LastEvaluatedKey;
-        } while(typeof data.LastEvaluatedKey != "undefined");
-      } catch (error) {
-        console.error(loggerTag, err);
-        reject(err);
-      }
-      resolve(scanResults);
-      console.log(loggerTag, 'process completed');
+      this.dynamoDB.scan(params, (err, data) => {
+        if (err) { 
+          console.log(loggerTag, 'tableName:', 'Failed writing item ' + err);
+          reject(err);
+        } else {
+          resolve(data.Items.map((item) => {
+            return this.converter.unmarshall(item);
+          }));
+          console.log(loggerTag, 'process completed');
+        }
+      });
     });
   }
 }

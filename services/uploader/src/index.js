@@ -15,7 +15,9 @@ module.exports.handler = async (event, context, callback) => {
   const fileName = `${id}${extname}`;
 
   const s3Service = new S3Service();
-  const data = await s3Service.upload(fileName, body.mimeType, body.file);
+  const data = await s3Service.upload(fileName, body.mimeType, body.file, {
+    original: body.fileName
+  });
   const response = {
     statusCode: 200,
     headers: {

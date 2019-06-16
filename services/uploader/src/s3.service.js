@@ -10,12 +10,13 @@ class S3Service {
     });
   }
 
-  upload(fileName, contentType, body) {
+  upload(fileName, contentType, body, metadata) {
     const params = {
       Bucket: process.env.fileUploaderS3BucketName,
       ContentType: contentType,
       Key: fileName, 
-      Body: body
+      Body: body,
+      Metadata: metadata
     };
   
     return this.s3.upload(params).promise();
