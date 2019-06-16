@@ -1,3 +1,11 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 10px;
+}
+
 .App {
   text-align: center;
 }
@@ -21,6 +29,25 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.Video li {
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.Video ul {
+  padding :10px;
+  margin:10px;
+}
+
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 50%;
+  padding: 10px;
 }
 
 @keyframes App-logo-spin {
