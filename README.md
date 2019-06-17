@@ -9,12 +9,6 @@ video upload and playback React website with Icoginito authorization using a Ser
 - S3
 - Elastic Transcoder
 
-
-## Live Demo
-Hosted on the github pages
-
-<a href="http://TomazJunior.github.io/serverless-video-upload/" target="_blank">Live demo</a>
-
 ## How to deploy and setup the project
 1) Deploy user-auth-pool project
 2) Setup icognito user pool in the AWS Console
