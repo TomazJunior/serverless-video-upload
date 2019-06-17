@@ -10,11 +10,12 @@ video upload and playback React website with Icoginito authorization using a Ser
 - Elastic Transcoder
 
 ## How to deploy and setup the project
-1) Deploy user-auth-pool project
-2) Setup icognito user pool in the AWS Console
-3) Create a new Elastic Transcoder pipeline
-4) Deploy the uploader service
-5) Deploy the video-crud service
+1) Deploy gateway project
+2) Deploy user-auth-pool project
+3) Setup icognito user pool in the AWS Console
+4) Create a new Elastic Transcoder pipeline
+5) Deploy the uploader service
+6) Deploy the video-crud service
 
 ----------
 
