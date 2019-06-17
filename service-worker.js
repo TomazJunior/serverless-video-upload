@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/serverless-video-upload/precache-manifest.79f7a36b3024237a2d52921d95798b78.js"
+  "/serverless-video-upload/precache-manifest.d5745d99e9da845e03b2249b2c378ad7.js"
 );
 
 self.addEventListener('message', (event) => {

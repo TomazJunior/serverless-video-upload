@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "7ec91fc8af70367c2427b1b146a3ed29",
+    "revision": "fb4e263da18f549a777b0c3f6abeb55c",
     "url": "/serverless-video-upload/index.html"
   },
   {
-    "revision": "affd83299733a7debfc5",
+    "revision": "118229157b26aff3b4be",
     "url": "/serverless-video-upload/static/css/main.f493a3c7.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/serverless-video-upload/static/js/2.101384ad.chunk.js"
   },
   {
-    "revision": "affd83299733a7debfc5",
-    "url": "/serverless-video-upload/static/js/main.2716a184.chunk.js"
+    "revision": "118229157b26aff3b4be",
+    "url": "/serverless-video-upload/static/js/main.d08063b9.chunk.js"
   },
   {
     "revision": "a94e390d37ddbc763514",
