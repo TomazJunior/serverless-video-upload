@@ -9,6 +9,7 @@ video upload and playback React website with Icoginito authorization using a Ser
 - S3
 - Elastic Transcoder
 
+
 ## How to deploy and setup the project
 1) Deploy gateway project
 2) Deploy user-auth-pool project
