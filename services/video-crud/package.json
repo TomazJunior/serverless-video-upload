@@ -4,7 +4,7 @@
   "description": "This service is in charge of pushing the video information to dynamodb videos table",
   "main": "index.js",
   "dependencies": {
-    "aws-sdk": "^2.475.0"
+    "aws-sdk": "^2.814.0"
   },
   "devDependencies": {
     "serverless": "1.31.0",
