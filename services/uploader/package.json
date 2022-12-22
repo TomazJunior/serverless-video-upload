@@ -13,8 +13,8 @@
     "jest": "^24.8.0",
     "serverless": "^1.45.1",
     "serverless-apigw-binary": "git+https://github.com/TomazJunior/serverless-apigw-binary.git",
-    "serverless-offline": "^3.31.3",
-    "serverless-s3-local": "^0.3.20"
+    "serverless-offline": "^12.0.3",
+    "serverless-s3-local": "^0.7.1"
   },
   "scripts": {
     "start": "serverless offline start -r us-east-1 --stage local",
