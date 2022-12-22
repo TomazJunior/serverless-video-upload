@@ -8,7 +8,7 @@
   },
   "devDependencies": {
     "serverless": "1.31.0",
-    "serverless-offline": "^3.31.3"
+    "serverless-offline": "^12.0.3"
   },
   "scripts": {
     "start": "serverless offline start -r us-east-1 --stage local",
