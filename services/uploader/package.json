@@ -11,7 +11,7 @@
   },
   "devDependencies": {
     "jest": "^24.8.0",
-    "serverless": "^1.45.1",
+    "serverless": "^1.83.3",
     "serverless-apigw-binary": "git+https://github.com/TomazJunior/serverless-apigw-binary.git",
     "serverless-offline": "^3.31.3",
     "serverless-s3-local": "^0.3.20"
